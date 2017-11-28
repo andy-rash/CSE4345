@@ -1,0 +1,46 @@
+.home {
+
+}
+div{
+    margin:auto;
+    width: 50%;
+    padding: 20px;
+    top:50%;
+    justify-content: center;
+    text-align: center;
+}
+.button{
+    text-align: center;
+}
+.my-drop-zone { border: dotted 3px lightgray; padding: 10px;}
+.nv-file-over { border: dotted 3px red; padding: 10px;} /* Default class applied to drop zones on over */
+.another-file-over-class { border: dotted 3px green; padding: 10px;}
+
+.span{
+    padding:20px;
+}
+.input-lg{
+    width: 250px;
+    height:100px;
+    word-break: break-word;
+}
+footer{
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+}
+footer p{
+    color: gray;
+    font-weight: 400;
+}
+footer a{
+    color: gray;
+    font-weight: 400; 
+}
+h2{
+    padding:15px;
+}

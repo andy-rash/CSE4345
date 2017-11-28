@@ -1,0 +1,33 @@
+<div *ngIf="!isResult" center>
+    <img src="https://i.imgur.com/PN1JWFB.png" height="150" width="150">
+    <div class="form-group">
+        <textarea class="form-control input-lg" id="inputlg" type="textarea"  cols="40" rows="5" [(ngModel)]="text" placeholder="Paste the text you want to summarize here..."> </textarea>
+    </div>
+    <span>or <br/><br/></span>
+    <div> 
+        <button id="loadFileXml" [hidden]="uploadFile" class="btn btn-default" onclick="document.getElementById('uploader').click();" >Upload a file</button>
+        <input id="uploader"  [hidden]="!uploadFile" type="file" accept=".txt" (change)="changeListener($event)">
+    </div>
+    <br/><br/>
+    <button class="btn btn-success" type="submit" (click)="sendRequest()">
+        Summarize!
+    </button>
+    
+
+
+
+</div>
+<div *ngIf="isResult" center>
+    <img src="https://i.imgur.com/PN1JWFB.png" height="150" width="150">
+    <h2>Summary</h2>
+    <div class="jumbotron">{{summary}}</div>
+    <i>Reduced by {{percentage}}%</i>
+    <h2>Keywords</h2>
+    <b *ngFor="let result of keywordResults" >
+        {{result.word}} 
+    </b>
+</div>
+<footer>
+    <p *ngIf="isResult"><a href="/">Back</a></p>
+  <p><a href="/">Automated Text Tagging and Summarization</a>  |   <a href="https://github.com/browlm13/Word-Embedding">About</a> | ATTS &copy; 2017</p> 
+</footer> 
