@@ -1,0 +1,21 @@
+localhost:80
+
+tls rrash@smu.edu
+gzip
+log /var/log/caddy/access.log {
+    rotate_keep 10
+}
+errors /var/log/caddy/error.log {
+    rotate_keep 10
+}
+
+header / Strict-Transport-Security 'max-age=31536000;'
+
+proxy / api:8000 {
+    fail_timeout 300s
+
+    header_upstream Host {host}
+    header_upstream X-Real-IP {remote}
+    header_upstream X-Forwarded-Proto {scheme}
+    header_upstream X-Forwarded-Ssl on
+}
