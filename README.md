@@ -246,3 +246,34 @@ Methods implimented in this repository for decomposing the cooccurence matrix in
 * Stochastic Gradient Descent, which draws heavily on the implementations by "Word2vec" and "GloVe"
 
 * Methods usgin Eigen Decomposition and Singular Value Decomposition.
+
+# ATTS Web Application
+Stefan Popov
+
+The ATTS Web Frontend is a simplistic Angular 2 application that interacts with the ATTS API to display the desired results in a human-readable manner and elicits the workflow that would ideally be done automatically. It uses various open-source Angular 2 modules to display that functionality and provide seamingless access to users. 
+
+### Set up
+1. Download and install NodeJS from a <a href="https://nodejs.org/en/download/">trusted distributor</a>.
+
+OR
+
+```
+sudo apt-get install -y nodejs
+```
+
+2.Clone this repo
+
+3.Execute the following commands 
+```
+cd frontend
+npm install
+npm install -g ng2-file-upload
+npm install -g @angular/cli
+```
+
+4.Run!
+
+```
+ng serve
+```
+
