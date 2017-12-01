@@ -1,7 +1,7 @@
 import base64
 import falcon
 from nlp.keywords import top_words
-
+from falcon_cors import CORS
 class TaggerResource(object):
     """Returns a list of n most relevant words"""
 
@@ -80,7 +80,8 @@ class TaggerResource(object):
     def get_tags():
         return 
 
-app = falcon.API()
+cors=CORS(allow_all_origins=True, allow_all_methods=True, allow_all_headers=True)
+app = falcon.API(middleware=[cors.middleware])
 
 tagger = TaggerResource()
 

@@ -19,7 +19,7 @@ import operator
 import re
 import copy
 
-import similarity_measures as sim
+from . import similarity_measures as sim
 
 #external
 import numpy as np

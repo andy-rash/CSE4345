@@ -16,6 +16,7 @@ nltk = "*"
 "newspaper3k" = "*"
 falcon = "*"
 gunicorn = "*"
+falcon-cors = "*"
 
 
 [requires]

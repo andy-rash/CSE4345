@@ -1,6 +1,6 @@
 #python 3
 
-import normalizers as norm
+from . import normalizers as norm
 
 """
 similarity measures
