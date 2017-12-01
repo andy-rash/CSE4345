@@ -36,6 +36,7 @@ def new_document_info(title='title', text='text', key_words=[], key_phrases=[], 
 
 all_documents = load_documents.get_document_jsons_list()
 all_documents_infos =[]
+percentage = 0.2
 
 for d in all_documents:
 
@@ -44,20 +45,21 @@ for d in all_documents:
 
 	title_words_list = norm.processes_and_tokenize(d['title'])
 
-	key_words_list = remove_scores(key.top_words(d['text']))
-	key_phrase_list = remove_scores(key.top_phrases(d['text']))
-	key_sentence_list = remove_scores(key.top_sentences(d['text']))
+	key_words_list = key.top_words(d['text'], return_scores=False)
+	key_phrase_list = key.top_phrases(d['text'],return_scores=False)
+	key_sentence_list = key.top_sentences(d['text'],return_scores=False)
 
 	key_words_score = sim.similarity_score(title_words_list, key_words_list)
 	key_phrases_score = sim.similarity_score(title_words_list, key_phrase_list)
 	key_sentences_score = sim.similarity_score(title_words_list, key_sentence_list)
 	total_score = key_words_score + key_phrases_score + key_sentences_score
 
-	summary_text = remove_scores(key.top_sentences(d['text'],original_order=True))
+	summary_text = key.summary(d['text'],percentage)
 
 	d_info =  new_document_info(title=d_title,text=d_text, key_words=key_words_list, key_phrases=key_phrase_list, key_sentences=key_sentence_list, key_words_score=key_words_score, key_phrases_score=key_phrases_score, key_sentences_score=key_sentences_score, total_score=total_score, reduced_summary=summary_text)
 
 	all_documents_infos.append(d_info)
+
 
 d_with_max_score = all_documents_infos[0]
 for d in all_documents_infos:
@@ -68,6 +70,7 @@ for d in all_documents_infos:
 #print (d_with_max_score['key_words'])
 #print (d_with_max_score['key_phrases'])
 #print (d_with_max_score['key_sentences'])
+#print(d_with_max_score['reduced_summary'])
 
 
 

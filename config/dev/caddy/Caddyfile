@@ -1,4 +1,4 @@
-localhost:80
+atts.me
 
 tls rrash@smu.edu
 gzip
@@ -11,7 +11,7 @@ errors /var/log/caddy/error.log {
 
 header / Strict-Transport-Security 'max-age=31536000;'
 
-proxy / api:8000 {
+proxy / 127.0.0.1:8000 {
     fail_timeout 300s
 
     header_upstream Host {host}

@@ -170,30 +170,3 @@ def keyword_scores_for_part_of_speech(pos, tokenized_document, tokenized_documen
 	filtered_tokens = [term for term, tag in tagged_tokenized_document if tag == pos]
 	return list(filtered_tokens)
 
-test_crazy = """
-	U.S.A. is the best-ish country in the world. I'm supprised how far $12.05 pieces of lake 
-	from... The Buddha, the Godhead, resides quite as comfortably in the circuits of a digital
-	computer or the gears of a cycle transmission as he does at the top of a mountain
-	or in the petals of a flower. To think otherwise is to demean the Buddha...which is
-	to demean oneself. L.A. I'm a fiagol! Are you? P.S. I love you,
-	Megan. 12:00 a.m. , 11:23 PM tonight. 12 o'clock
-
-	It's 12:00 am and its time for a bath. There are 100,000 yellow men on a train to calcuta.
-	 and 2,000,560,786 jews. 5,000 in my ear. My savings 3.12$.
-
-	 2,500,766.30$
-	 $2,500,766.333 
-	My mother yerns the chocolate rain. L.J. is amazing e.g. great
-	tammy-lynn is a whore. you and I. YOU and I, we are both tierd.
-
-	People in England who commit the most serious crimes of 
-	animal cruelty could face up to five years in prison, the government has said.
-	The move - an increase on the current six-month maximum sentence - follows a 
-	number of cases where English courts wanted to hand down tougher sentences.
-	Environment Secretary Michael Gove said it would target "those who commit the 
-	most shocking cruelty towards animals".
-	The RSPCA said it would "deter people from abusing and neglecting animals"."
-"""
-
-#print(set_clean_tokenize(test_crazy))
-
