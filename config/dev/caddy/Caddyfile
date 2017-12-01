@@ -1,5 +1,7 @@
 atts.me
 
+root /home/andy/CSE4345/frontend
+
 tls rrash@smu.edu
 gzip
 log /var/log/caddy/access.log {
@@ -11,11 +13,9 @@ errors /var/log/caddy/error.log {
 
 header / Strict-Transport-Security 'max-age=31536000;'
 
-proxy / 127.0.0.1:8000 {
+proxy /api 127.0.0.1:8000 {
     fail_timeout 300s
-
-    header_upstream Host {host}
-    header_upstream X-Real-IP {remote}
-    header_upstream X-Forwarded-Proto {scheme}
+    without /api
+    transparent
     header_upstream X-Forwarded-Ssl on
 }
