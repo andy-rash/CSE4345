@@ -3,7 +3,7 @@ Andy Rash
 
 ## Request Keywords
 
-### HTTP Request
+### Endpoint
 `POST https://atts.me/keywords`
 
 ### Request Headers
@@ -176,6 +176,59 @@ On a successful request, the `data` dictionary will be populated with the follow
             "data": {}
         }
 ```
+
+# Backend Setup
+
+The ATTS API is a Falcon app served with Gunicorn through the Caddy webserver on a Digital Ocean droplet.
+
+## Falcon
+
+[Falcon](https://falconframework.org/) is a Python framework designed for speed and reliability. It compiles using Cython when it can, so it has low latency compared to other Python web framworks. Falcon uses very simple syntax, allowing for endpoints to be written quickly while maintaining code quality.
+
+## Gunicorn
+
+[Gunicorn](http://gunicorn.org/) is used to daemonize the Falcon app. The Gunicorn server is made further reliable through the use of a SystemD service. The configuration is below.
+
+**gunicorn@.service**
+```
+[Unit]
+Description=Gunicorn instance serving the ATTS API
+Documentation=http://docs.gunicorn.org/en/stable
+After=network.target
+
+[Service]
+User=%i
+WorkingDirectory=/home/andy/CSE4345/src
+Environment="PATH=/home/andy/.local/share/virtualenvs/CSE4345-doDay4dT/bin"
+ExecStart=/home/andy/.local/share/virtualenvs/CSE4345-doDay4dT/bin/gunicorn -w 4 tagger:app
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## Caddy
+Requests are served to the Falcon app through a [Caddy webserver](https://caddyserver.com/). Caddy allows for incredibly simple, yet powerful webserver configuration. It enables HTTPS by default for secure communications, but the configuration is significantly simpler than other choices such as Nginx or Apache. For our use, the Caddy server has been made into a SystemD service in order to run continously. The configuration is below.
+
+**caddy@.service**
+```
+[Unit]
+Description=Caddy HTTP/2 web server %I
+Documentation=https://caddyserver.com/docs
+After=network.target
+
+[Service]
+User=%i
+Environment=STNORESTART=yes
+ExecStart=/usr/local/bin/caddy -agree=true -conf=/home/andy/CSE4345/config/dev/caddy/Caddyfile
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## Digital Ocean
+The API is hosted on a [Digital Ocean](https://www.digitalocean.com) droplet. Digital Ocean allows for very quick turnaround and complete customization when setting up hosting.
 
 # Word-Embedding
 LJ Brown
