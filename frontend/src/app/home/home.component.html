@@ -21,7 +21,7 @@
     <img src="https://i.imgur.com/PN1JWFB.png" height="150" width="150">
     <h2>Summary</h2>
     <div class="jumbotron">{{summary}}</div>
-    <i>Reduced by {{percentage}}%</i>
+    <i>Reduced to {{percentage}}%</i>
     <h2>Keywords</h2>
     <b *ngFor="let result of keywordResults" >
         {{result.word}} 
@@ -29,5 +29,5 @@
 </div>
 <footer>
     <p *ngIf="isResult"><a href="/">Back</a></p>
-  <p><a href="/">Automated Text Tagging and Summarization</a>  |   <a href="https://github.com/browlm13/Word-Embedding">About</a> | ATTS &copy; 2017</p> 
+  <p><a href="/">Automated Text Tagging and Summarization</a>  |   <a href="https://github.com/andy-rash/CSE4345">About</a> | ATTS &copy; 2017</p> 
 </footer> 

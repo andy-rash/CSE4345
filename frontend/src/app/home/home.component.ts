@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 	file:any;
 	summary:any;
 	percentage:any;
-	URL = 'http://private-d754f6-atts.apiary-mock.com/';
+	URL = 'https://atts.me/api/';
 	constructor(public http:Http ){
 		this.text = "";
 		this.isResult=false;
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 						console.log(this.keywordResults);
 						this.keywordResults=data.json()['data']['keywords'];
 						this.summary= data.json()['data']['summary'];
-						this.percentage = data.json()['data']['reduction'];
+						this.percentage = data.json()['data']['percentage'];
 						this.isResult=true;
 					},
 				err=> console.log(err));
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
 						console.log(data.json());
 						this.keywordResults=data.json()['data']['keywords'];
 						this.summary= data.json()['data']['summary'];
-						this.percentage = data.json()['data']['reduction'];
+						this.percentage = data.json()['data']['percentage'];
 						console.log(this.keywordResults);
 						this.isResult=true;
 					},
