@@ -1,6 +1,6 @@
 import base64
 import falcon
-from nlp.keywords import top_words
+from nlp.keywords import top_words, summary
 from falcon_cors import CORS
 class TaggerResource(object):
     """Returns a list of n most relevant words"""
@@ -58,8 +58,25 @@ class TaggerResource(object):
         #                     }
         #        return
 
+        if is_file is True:
+            try:
+                body_text = base64.b64decode(file_data).strip().decode("utf-8")
+            except:
+                resp.status = falcon.HTTP_500
+                resp.media = {
+                                 "success": False,
+                                 "error": "Internal Server Error",
+                                 "message": "Unable to decode file.",
+                                 "data": {}
+                             }
+                return
+    
+
         words = top_words(body_text, n=int(num_words))
         words = [{"word": k, "value": "{:.2f}".format(v)} for (k, v) in words]
+
+        percentage = 0.2
+        text_summary = summary(body_text, percentage)
 
         if top_words is not None: 
             resp.status = falcon.HTTP_200
@@ -68,6 +85,8 @@ class TaggerResource(object):
                              "error": "None",
                              "message": "Successfully returned keywords.",
                              "data": {
+                                         "summary": text_summary,
+                                         "percentage": int(percentage*100),
                                          "keywords": words
                                      } 
                          }
