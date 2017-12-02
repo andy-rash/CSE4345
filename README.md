@@ -4,7 +4,7 @@ Andy Rash
 ## Request Keywords
 
 ### Endpoint
-`POST https://atts.me/keywords`
+`POST https://atts.me/api/keywords`
 
 ### Request Headers
 * `Content-Type: application/json`
